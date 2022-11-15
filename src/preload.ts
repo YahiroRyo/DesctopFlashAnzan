@@ -1,1 +1,3 @@
-console.log('preloaded!');
+import { contextBridge, ipcRenderer } from "electron";
+
+contextBridge.exposeInMainWorld("api", {});
