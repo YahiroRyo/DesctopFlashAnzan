@@ -1,7 +1,7 @@
 import React from "react";
 
 const Top = () => {
-  return <>HELLO WORLD</>;
+  return <p>HELLO WORLD</p>;
 };
 
 export default Top;
