@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { FlashAnzanParams } from "../../../../types/FlashAnzanParams";
 import SettingForm from "../../PresentationalComponents/SettingForm";
 
 type SettingFormContainerProps = {
@@ -6,21 +9,41 @@ type SettingFormContainerProps = {
 };
 
 const SettingFormContainer = ({ className }: SettingFormContainerProps) => {
-  const [papersNum, setPapersNum] = useState<number>(0);
-  const [digitsNum, setDigitsNum] = useState<number>(0);
-  const [secondsNum, setSecondsNum] = useState<number>(0);
-  const startFlashAnzan = () => {};
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FlashAnzanParams>({
+    mode: "onChange",
+    defaultValues: {
+      papersNum: parseInt(localStorage.getItem("papersNum") ?? "0"),
+      digitNum: parseInt(localStorage.getItem("digitNum") ?? "0"),
+      secondsNum: parseFloat(localStorage.getItem("secondsNum") ?? "0"),
+    },
+  });
+
+  const startFlashAnzan = (data: FlashAnzanParams) => {
+    localStorage.setItem("papersNum", data.papersNum.toString());
+    localStorage.setItem("digitNum", data.digitNum.toString());
+    localStorage.setItem("secondsNum", data.secondsNum.toString());
+
+    navigate("/flashAnzanCountDown", {
+      state: {
+        papersNum: data.papersNum,
+        digitNum: data.digitNum,
+        secondsNum: data.secondsNum,
+      },
+    });
+  };
 
   return (
     <SettingForm
       className={className}
       onSubmit={startFlashAnzan}
-      papersNum={papersNum}
-      setPapersNum={setPapersNum}
-      digitsNum={digitsNum}
-      setDigitsNum={setDigitsNum}
-      secondsNum={secondsNum}
-      setSecondsNum={setSecondsNum}
+      register={register}
+      handleSubmit={handleSubmit}
+      errors={errors}
     />
   );
 };

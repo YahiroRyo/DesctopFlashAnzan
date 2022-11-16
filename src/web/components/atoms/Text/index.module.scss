@@ -1,0 +1,7 @@
+@use "../../../styles/color.scss" as colors;
+
+.text {
+  color: colors.$colors-black;
+  font-size: 2rem;
+  letter-spacing: 0.1rem;
+}
