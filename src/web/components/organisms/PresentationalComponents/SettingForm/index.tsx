@@ -28,11 +28,11 @@ const SettingForm = ({
 }: SettingFormProps) => {
   return (
     <>
-      {errors?.digitsNum || errors?.papersNum || errors?.secondsNum ? (
+      {errors?.digitNum || errors?.papersNum || errors?.secondsNum ? (
         <Alert kind={AlertKind.ERROR} className={styles.alert}>
           <ul>
             {errors.papersNum && <li>{errors.papersNum.message}</li>}
-            {errors.digitsNum && <li>{errors.digitsNum.message}</li>}
+            {errors.digitNum && <li>{errors.digitNum.message}</li>}
             {errors.secondsNum && <li>{errors.secondsNum.message}</li>}
           </ul>
         </Alert>
@@ -61,7 +61,7 @@ const SettingForm = ({
         <InputGroup
           className={styles.inputGroup}
           validRegister={{
-            name: "digitsNum",
+            name: "digitNum",
             register: register,
             valid: {
               required: "桁数を入力してください",
@@ -87,7 +87,6 @@ const SettingForm = ({
           }}
           placeholder="1枚あたりの秒数を入力"
           label="1枚あたりの秒数"
-          type="number"
         />
         <SuccessButton className={styles.submit}>
           フラッシュ暗算を始める

@@ -2,11 +2,11 @@ import React from "react";
 import Text from "../../../atoms/Text";
 import styles from "./index.module.scss";
 
-type MainProps = {
-  displayNumber: number;
+type MainCountDownProps = {
+  displayNumber: number | string;
 };
 
-const Main = ({ displayNumber }: MainProps) => {
+const MainCountDown = ({ displayNumber }: MainCountDownProps) => {
   return (
     <div className={styles.main}>
       <Text className={styles.number}>{displayNumber}</Text>
@@ -14,4 +14,4 @@ const Main = ({ displayNumber }: MainProps) => {
   );
 };
 
-export default Main;
+export default MainCountDown;

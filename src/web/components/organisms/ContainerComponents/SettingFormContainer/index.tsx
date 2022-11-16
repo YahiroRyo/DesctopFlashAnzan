@@ -18,20 +18,20 @@ const SettingFormContainer = ({ className }: SettingFormContainerProps) => {
     mode: "onChange",
     defaultValues: {
       papersNum: parseInt(localStorage.getItem("papersNum") ?? "0"),
-      digitsNum: parseInt(localStorage.getItem("digitsNum") ?? "0"),
-      secondsNum: parseInt(localStorage.getItem("secondsNum") ?? "0"),
+      digitNum: parseInt(localStorage.getItem("digitNum") ?? "0"),
+      secondsNum: parseFloat(localStorage.getItem("secondsNum") ?? "0"),
     },
   });
 
   const startFlashAnzan = (data: FlashAnzanParams) => {
     localStorage.setItem("papersNum", data.papersNum.toString());
-    localStorage.setItem("digitsNum", data.digitsNum.toString());
+    localStorage.setItem("digitNum", data.digitNum.toString());
     localStorage.setItem("secondsNum", data.secondsNum.toString());
 
-    navigate("/flashAnzan", {
+    navigate("/flashAnzanCountDown", {
       state: {
         papersNum: data.papersNum,
-        digitsNum: data.digitsNum,
+        digitNum: data.digitNum,
         secondsNum: data.secondsNum,
       },
     });

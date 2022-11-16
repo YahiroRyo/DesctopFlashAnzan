@@ -1,5 +1,5 @@
 export type FlashAnzanParams = {
   papersNum: number;
-  digitsNum: number;
+  digitNum: number;
   secondsNum: number;
 };
