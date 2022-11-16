@@ -3,6 +3,7 @@ import { Configuration } from "webpack";
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { resolve } from "path";
 
 // 開発者モードか否かで処理を分岐する
 const isDev = process.env.NODE_ENV === "development";
@@ -58,7 +59,7 @@ const common: Configuration = {
       },
       {
         // 画像やフォントなどのアセット類
-        test: /\.(ico|png|svg|eot|woff?2?)$/,
+        test: /\.(ico|mp3|png|svg|eot|woff?2?)$/,
         /**
          * アセット類も同様に asset/inline は使用しない
          * なお、webpack@5.x では file-loader or url-loader は不要になった
