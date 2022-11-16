@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useInterval } from "../../../../modules/interval/useInterval";
-import { generateRandomNum } from "../../../../modules/number";
+import {
+  generateRandomBoolean,
+  generateRandomNum,
+} from "../../../../modules/number";
 import { FlashAnzanParams } from "../../../../types/FlashAnzanParams";
 import Main from "../../PresentationalComponents/Main";
 
@@ -10,9 +13,11 @@ const MainContainer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const state = location.state as FlashAnzanParams;
-  const [answer, setAnswer] = useState<number>(0);
+  const [answer, setAnswer] = useState<number>(
+    generateRandomNum(state.digitNum)
+  );
   const [countPapersNum, setCountPapersNum] = useState<number>(0);
-  const [displayNumber, setDisplayNumber] = useState<number>(0);
+  const [displayNumber, setDisplayNumber] = useState<number>(answer);
 
   const isIllegalNumber = (randomNum: number): boolean => {
     return (
@@ -21,16 +26,19 @@ const MainContainer = () => {
   };
 
   const isFinishedFlashAnzan = (): boolean => {
-    return countPapersNum === state.papersNum;
+    return countPapersNum === state.papersNum - 1;
   };
 
   const flashAnzan = () => {
     if (isFinishedFlashAnzan()) {
       window.clearInterval(interval.current!);
 
-      navigate("/answer", {
+      navigate("/result", {
         state: {
           answer: answer,
+          papersNum: location.state.papersNum,
+          digitNum: location.state.digitNum,
+          secondsNum: location.state.secondsNum,
         },
       });
       return;
@@ -49,10 +57,6 @@ const MainContainer = () => {
   };
 
   interval = useInterval(flashAnzan, state.secondsNum * 1000);
-
-  useEffect(() => {
-    flashAnzan();
-  }, []);
 
   return <Main displayNumber={displayNumber} />;
 };

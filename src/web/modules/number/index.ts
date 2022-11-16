@@ -5,5 +5,9 @@ export const generateRandomNum = (digitNum: number): number => {
     result += String(Math.floor(Math.random() * 10));
   }
 
-  return parseInt(result);
+  return generateRandomBoolean() ? -parseInt(result) : parseInt(result);
+};
+
+export const generateRandomBoolean = (): boolean => {
+  return Math.random() < 0.5;
 };
