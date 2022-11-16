@@ -1,0 +1,17 @@
+@use "../../../styles/color.scss" as colors;
+
+.alert {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  color: colors.$colors-white;
+  background-color: colors.$colors-black;
+  border-radius: 1rem;
+  font-size: 2rem;
+
+  &.error {
+    background-color: colors.$colors-error;
+    color: colors.$colors-error-deep;
+    border: 1px solid colors.$colors-error-deep;
+  }
+}

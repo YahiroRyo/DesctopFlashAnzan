@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { FlashAnzanParams } from "../../../../types/FlashAnzanParams";
 import SettingForm from "../../PresentationalComponents/SettingForm";
 
 type SettingFormContainerProps = {
@@ -6,21 +9,38 @@ type SettingFormContainerProps = {
 };
 
 const SettingFormContainer = ({ className }: SettingFormContainerProps) => {
-  const [papersNum, setPapersNum] = useState<number>(0);
-  const [digitsNum, setDigitsNum] = useState<number>(0);
-  const [secondsNum, setSecondsNum] = useState<number>(0);
-  const startFlashAnzan = () => {};
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FlashAnzanParams>({
+    mode: "onChange",
+    defaultValues: {
+      papersNum: 0,
+      digitsNum: 0,
+      secondsNum: 0,
+    },
+  });
+
+  const startFlashAnzan = (data: FlashAnzanParams) => {
+    navigate("/flashAnzan", {
+      state: {
+        papersNum: data.papersNum,
+        digitsNum: data.digitsNum,
+        secondsNum: data.secondsNum,
+      },
+    });
+  };
 
   return (
     <SettingForm
       className={className}
       onSubmit={startFlashAnzan}
-      papersNum={papersNum}
-      setPapersNum={setPapersNum}
-      digitsNum={digitsNum}
-      setDigitsNum={setDigitsNum}
-      secondsNum={secondsNum}
-      setSecondsNum={setSecondsNum}
+      register={register}
+      handleSubmit={handleSubmit}
+      errors={errors}
     />
   );
 };
