@@ -13,18 +13,21 @@ const SettingFormContainer = ({ className }: SettingFormContainerProps) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<FlashAnzanParams>({
     mode: "onChange",
     defaultValues: {
-      papersNum: 0,
-      digitsNum: 0,
-      secondsNum: 0,
+      papersNum: parseInt(localStorage.getItem("papersNum") ?? "0"),
+      digitsNum: parseInt(localStorage.getItem("digitsNum") ?? "0"),
+      secondsNum: parseInt(localStorage.getItem("secondsNum") ?? "0"),
     },
   });
 
   const startFlashAnzan = (data: FlashAnzanParams) => {
+    localStorage.setItem("papersNum", data.papersNum.toString());
+    localStorage.setItem("digitsNum", data.digitsNum.toString());
+    localStorage.setItem("secondsNum", data.secondsNum.toString());
+
     navigate("/flashAnzan", {
       state: {
         papersNum: data.papersNum,
