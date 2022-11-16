@@ -1,3 +1,5 @@
+@use "../../../../styles/color.scss" as colors;
+
 .main {
   width: 100vw;
   height: 100vh;
@@ -8,4 +10,13 @@
 
 .number {
   font-size: 24rem;
+}
+
+.kill {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  margin: 0;
+  color: colors.$colors-black;
+  font-weight: bold;
 }

@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import audioPath from "../../../../assets/displayNumber.mp3";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useInterval } from "../../../../modules/interval/useInterval";
 import { FlashAnzanParams } from "../../../../types/FlashAnzanParams";
@@ -18,7 +19,7 @@ const MainCountDownContainer = () => {
     return countPapersNum - 1 === countDown.length;
   };
 
-  const flashAnzan = () => {
+  const flashAnzan = async () => {
     if (isFinishedFlashAnzan()) {
       window.clearInterval(interval.current!);
 
@@ -28,11 +29,30 @@ const MainCountDownContainer = () => {
       return;
     }
 
+    new Audio(audioPath).play();
+
     setCountPapersNum(countPapersNum + 1);
     setDisplayNumber(countDown[countPapersNum - 1]);
   };
 
   interval = useInterval(flashAnzan, 1000);
+
+  useEffect(() => {
+    new Audio(audioPath).play();
+  });
+
+  useEffect(() => {
+    const killFlashAnzan = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate("/");
+        return;
+      }
+    };
+
+    window.addEventListener("keydown", killFlashAnzan);
+
+    return () => window.removeEventListener("keydown", killFlashAnzan);
+  });
 
   return <MainCountDown displayNumber={displayNumber} />;
 };

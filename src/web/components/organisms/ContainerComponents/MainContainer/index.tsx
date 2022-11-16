@@ -1,3 +1,4 @@
+import audioPath from "../../../../assets/displayNumber.mp3";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useInterval } from "../../../../modules/interval/useInterval";
@@ -51,12 +52,31 @@ const MainContainer = () => {
       return;
     }
 
+    new Audio(audioPath).play();
+
     setDisplayNumber(randomNum);
     setAnswer(answer + randomNum);
     setCountPapersNum(countPapersNum + 1);
   };
 
   interval = useInterval(flashAnzan, state.secondsNum * 1000);
+
+  useEffect(() => {
+    new Audio(audioPath).play();
+  });
+
+  useEffect(() => {
+    const killFlashAnzan = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        navigate("/");
+        return;
+      }
+    };
+
+    window.addEventListener("keydown", killFlashAnzan);
+
+    return () => window.removeEventListener("keydown", killFlashAnzan);
+  });
 
   return <Main displayNumber={displayNumber} />;
 };
