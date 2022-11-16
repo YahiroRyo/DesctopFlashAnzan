@@ -1,0 +1,16 @@
+@use "../../../styles/color.scss" as colors;
+
+.button {
+  width: 100%;
+  font-size: 2rem;
+  padding: 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  color: colors.$colors-white;
+  background-color: colors.$colors-black;
+  border: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
