@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
-import Top from '../pages/Top';
+import Setting from "../pages/Setting";
 
 const MainRoutes = () => {
-    return (
-        <Router>
-            <Routes>
-                <Route index={true} element={<Top />} />
-            </Routes>
-        </Router>
-    );
-}
+  return (
+    <Router>
+      <Routes>
+        <Route index={true} element={<Setting />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default MainRoutes;

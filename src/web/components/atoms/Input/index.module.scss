@@ -1,0 +1,18 @@
+@use "../../../styles/color.scss" as colors;
+
+.input {
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 2rem;
+  border: 1px solid rgba(colors.$colors-black, 0.25);
+  width: 100%;
+  color: colors.$colors-black;
+  letter-spacing: 0.1rem;
+
+  &:focus {
+    outline: 2px solid colors.$colors-black;
+  }
+  &::placeholder {
+    color: rgba(colors.$colors-black, 0.25);
+  }
+}

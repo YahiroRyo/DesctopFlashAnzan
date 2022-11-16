@@ -1,0 +1,8 @@
+@use "../../../styles/color.scss" as colors;
+
+.label {
+  font-size: 2rem;
+  font-weight: bold;
+  color: colors.$colors-black;
+  letter-spacing: 0.1rem;
+}
