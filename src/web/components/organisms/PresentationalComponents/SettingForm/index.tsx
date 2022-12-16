@@ -8,6 +8,7 @@ import { AlertKind } from "../../../../types/AlertKind";
 import { FlashAnzanParams } from "../../../../types/FlashAnzanParams";
 import SuccessButton from "../../../atoms/SuccessButton";
 import Alert from "../../../molecules/Alert";
+import CheckboxGroup from "../../../molecules/CheckboxGroup";
 import InputGroup from "../../../molecules/InputGroup";
 import styles from "./index.module.scss";
 
@@ -87,6 +88,15 @@ const SettingForm = ({
           }}
           placeholder="1枚あたりの秒数を入力"
           label="1枚あたりの秒数"
+        />
+        <CheckboxGroup
+          className={styles.inputGroup}
+          label="マイナスあり・なし"
+          validRegister={{
+            name: "isEnableMinus",
+            register: register,
+            valid: {},
+          }}
         />
         <SuccessButton className={styles.submit}>
           フラッシュ暗算を始める
