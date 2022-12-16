@@ -19,19 +19,30 @@ const MainContainer = () => {
     generateRandomPositiveNum(state.digitNum)
   );
   const [countPapersNum, setCountPapersNum] = useState<number>(0);
-  const [displayNumber, setDisplayNumber] = useState<number>(answer);
+  const [displayedNumber, setDisplayNumber] = useState<number>(answer);
 
   const isIllegalNumber = (randomNum: number): boolean => {
     return (
-      (state.digitNum === 1 &&
-        randomNum === 0 &&
-        randomNum === displayNumber) ||
-      answer - randomNum < 0
+      (state.digitNum === 1 && randomNum === displayedNumber) ||
+      randomNum === 0 ||
+      answer + randomNum < 0
     );
   };
 
   const isFinishedFlashAnzan = (): boolean => {
     return countPapersNum === state.papersNum - 1;
+  };
+
+  const generateLegalNum = (digitNum: number): number => {
+    const randomNum = state.isEnableMinus
+      ? generateRandomNum(digitNum)
+      : generateRandomPositiveNum(digitNum);
+
+    if (isIllegalNumber(randomNum)) {
+      return generateLegalNum(digitNum);
+    }
+
+    return randomNum;
   };
 
   const flashAnzan = () => {
@@ -45,18 +56,14 @@ const MainContainer = () => {
             papersNum: location.state.papersNum,
             digitNum: location.state.digitNum,
             secondsNum: location.state.secondsNum,
+            isEnableMinus: location.state.isEnableMinus,
           },
         });
       }, 5000);
       return;
     }
 
-    const randomNum = generateRandomNum(state.digitNum);
-
-    if (isIllegalNumber(randomNum)) {
-      flashAnzan();
-      return;
-    }
+    const randomNum = generateLegalNum(state.digitNum);
 
     new Audio(audioPath).play();
 
@@ -84,7 +91,7 @@ const MainContainer = () => {
     return () => window.removeEventListener("keydown", killFlashAnzan);
   });
 
-  return <Main displayNumber={displayNumber} />;
+  return <Main displayNumber={displayedNumber} />;
 };
 
 export default MainContainer;

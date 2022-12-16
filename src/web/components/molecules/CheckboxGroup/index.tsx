@@ -1,43 +1,35 @@
 import React, { ChangeEvent, ComponentProps } from "react";
 import { ValidRegister } from "../../../types/ValidRegister";
-import Input from "../../atoms/Input";
+import Checkbox from "../../atoms/Checkbox";
 import Label from "../../atoms/Label";
 import styles from "./index.module.scss";
 
-type InputGroupProps = {
+type CheckboxGroupProps = {
   className?: string;
   placeholder?: string;
-  type?: string;
-  validRegister?: ValidRegister;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  validRegister?: ValidRegister;
   value?: any;
   label: string;
 };
 
-const InputGroup = ({
+const CheckboxGroup = ({
   className,
-  placeholder,
-  label,
   validRegister,
+  label,
   onChange,
   value,
-  type,
-}: InputGroupProps) => {
+}: CheckboxGroupProps) => {
   return (
-    <div className={className}>
+    <div className={`${styles.checkbox} ${className}`}>
       <Label htmlFor={label}>{label}</Label>
-      <br />
-      <Input
+      <Checkbox
         validRegister={validRegister}
-        value={value}
         onChange={onChange}
-        placeholder={placeholder}
-        id={label}
-        className={styles.input}
-        type={type}
+        value={value}
       />
     </div>
   );
 };
 
-export default InputGroup;
+export default CheckboxGroup;

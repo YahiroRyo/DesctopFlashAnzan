@@ -20,6 +20,7 @@ const SettingFormContainer = ({ className }: SettingFormContainerProps) => {
       papersNum: parseInt(localStorage.getItem("papersNum") ?? "0"),
       digitNum: parseInt(localStorage.getItem("digitNum") ?? "0"),
       secondsNum: parseFloat(localStorage.getItem("secondsNum") ?? "0"),
+      isEnableMinus: localStorage.getItem("isEnableMinus") === "true" ?? false,
     },
   });
 
@@ -27,12 +28,14 @@ const SettingFormContainer = ({ className }: SettingFormContainerProps) => {
     localStorage.setItem("papersNum", data.papersNum.toString());
     localStorage.setItem("digitNum", data.digitNum.toString());
     localStorage.setItem("secondsNum", data.secondsNum.toString());
+    localStorage.setItem("isEnableMinus", data.isEnableMinus.toString());
 
     navigate("/flashAnzanCountDown", {
       state: {
         papersNum: data.papersNum,
         digitNum: data.digitNum,
         secondsNum: data.secondsNum,
+        isEnableMinus: data.isEnableMinus,
       },
     });
   };

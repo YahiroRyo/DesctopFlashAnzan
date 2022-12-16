@@ -11,9 +11,10 @@ type ResultProps = {
   papersNum: number;
   digitNum: number;
   secondsNum: number;
+  isEnableMinus: boolean;
 };
 
-const Result = ({ answer, papersNum, digitNum, secondsNum }: ResultProps) => {
+const Result = ({ answer, papersNum, digitNum, secondsNum, isEnableMinus }: ResultProps) => {
   return (
     <div className={styles.result}>
       <Inner>
@@ -31,6 +32,7 @@ const Result = ({ answer, papersNum, digitNum, secondsNum }: ResultProps) => {
             papersNum: papersNum,
             digitNum: digitNum,
             secondsNum: secondsNum,
+            isEnableMinus: isEnableMinus,
           }}
         >
           <SuccessButton>もう一度行う</SuccessButton>
