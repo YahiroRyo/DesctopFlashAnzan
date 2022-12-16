@@ -12,6 +12,9 @@
   justify-content: center;
   translate: 0.3s;
   width: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   &:hover {
     background-color: colors.$colors-error-deep;
