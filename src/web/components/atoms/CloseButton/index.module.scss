@@ -1,0 +1,20 @@
+@use "../../../styles/color.scss" as colors;
+
+.button {
+  align-items: center;
+  background-color: colors.$colors-red;
+  border: 0;
+  color: colors.$colors-white;
+  display: flex;
+  font-size: 3rem;
+  font-weight: bold;
+  height: 4rem;
+  justify-content: center;
+  translate: 0.3s;
+  width: 4rem;
+
+  &:hover {
+    background-color: colors.$colors-error-deep;
+    cursor: pointer;
+  }
+}

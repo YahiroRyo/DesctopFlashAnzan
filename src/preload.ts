@@ -1,3 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-contextBridge.exposeInMainWorld("api", {});
+contextBridge.exposeInMainWorld("api", {
+  closeApplication: () => ipcRenderer.send("closeApplication"),
+});

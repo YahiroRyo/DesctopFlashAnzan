@@ -1,5 +1,5 @@
 import path from "node:path";
-import { BrowserWindow, app } from "electron";
+import { BrowserWindow, app, ipcMain } from "electron";
 
 // ホットリロードスクリプトをインポート
 import { reloader } from "./reloader";
@@ -28,6 +28,10 @@ const setupWindow = (): BrowserWindow => {
   mainWindow.webContents.openDevTools();
   mainWindow.setMenuBarVisibility(false);
   mainWindow.setFullScreen(true);
+
+  ipcMain.on("closeApplication", () => {
+    app.quit();
+  });
 
   return mainWindow;
 };
