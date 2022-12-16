@@ -25,7 +25,11 @@ const setupWindow = (): BrowserWindow => {
   });
 
   mainWindow.loadFile("dist/index.html");
-  mainWindow.webContents.openDevTools();
+
+  if (process.env.NODE_ENV === "development") {
+    mainWindow.webContents.openDevTools();
+  }
+
   mainWindow.setMenuBarVisibility(false);
   mainWindow.setFullScreen(true);
 
