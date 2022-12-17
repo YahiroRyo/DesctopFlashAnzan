@@ -91,7 +91,7 @@ const SettingForm = ({
         />
         <CheckboxGroup
           className={styles.inputGroup}
-          label="マイナスあり・なし"
+          label="マイナスを有効"
           validRegister={{
             name: "isEnableMinus",
             register: register,
