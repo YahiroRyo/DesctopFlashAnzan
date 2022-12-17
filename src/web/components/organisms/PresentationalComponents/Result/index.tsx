@@ -14,13 +14,26 @@ type ResultProps = {
   isEnableMinus: boolean;
 };
 
-const Result = ({ answer, papersNum, digitNum, secondsNum, isEnableMinus }: ResultProps) => {
+const Result = ({
+  answer,
+  papersNum,
+  digitNum,
+  secondsNum,
+  isEnableMinus,
+}: ResultProps) => {
+  const answerFontSize = 32 - String(answer).length;
+
   return (
     <div className={styles.result}>
       <Inner>
         <Text className={styles.answerText}>答え</Text>
       </Inner>
-      <Text className={styles.answer}>{answer}</Text>
+      <Text
+        className={styles.answer}
+        style={{ fontSize: `${answerFontSize}rem` }}
+      >
+        {answer}
+      </Text>
       <Inner className={styles.actions}>
         <Link className={styles.button} to="/">
           <Button>フラッシュ暗算設定に戻る</Button>

@@ -20,17 +20,48 @@ const MainContainer = () => {
   );
   const [countPapersNum, setCountPapersNum] = useState<number>(0);
   const [displayedNumber, setDisplayNumber] = useState<number>(answer);
+  const [isDisplayedMinus, setIsDisplayedMinus] = useState<boolean>(false);
+
+  const isSameDigitNum = (num: number): boolean => {
+    return displayedNumber === num;
+  };
+
+  const isZero = (num: number): boolean => {
+    return num === 0;
+  };
+
+  const isAnswerNegativeNumber = (num: number): boolean => {
+    return answer + num < 0;
+  };
+
+  const isUnDisplayedMinus = (num: number): boolean => {
+    if (isDisplayedMinus) {
+      return false;
+    }
+
+    if (num < 0) {
+      setIsDisplayedMinus(true);
+      return false;
+    }
+
+    return isJustBeforeFinishFlashAnzan();
+  };
 
   const isIllegalNumber = (randomNum: number): boolean => {
     return (
-      (state.digitNum === 1 && randomNum === displayedNumber) ||
-      randomNum === 0 ||
-      answer + randomNum < 0
+      isSameDigitNum(randomNum) ||
+      isZero(randomNum) ||
+      isAnswerNegativeNumber(randomNum) ||
+      isUnDisplayedMinus(randomNum)
     );
   };
 
   const isFinishedFlashAnzan = (): boolean => {
     return countPapersNum === state.papersNum - 1;
+  };
+
+  const isJustBeforeFinishFlashAnzan = (): boolean => {
+    return countPapersNum === state.papersNum - 2;
   };
 
   const generateLegalNum = (digitNum: number): number => {
