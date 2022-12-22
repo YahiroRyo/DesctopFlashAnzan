@@ -11,6 +11,7 @@ type ResultProps = {
   papersNum: number;
   digitNum: number;
   secondsNum: number;
+  secondsLeftFromGameFinished: number;
   isEnableMinus: boolean;
 };
 
@@ -19,6 +20,7 @@ const Result = ({
   papersNum,
   digitNum,
   secondsNum,
+  secondsLeftFromGameFinished,
   isEnableMinus,
 }: ResultProps) => {
   const answerFontSize = 32 - String(answer).length;
@@ -45,6 +47,7 @@ const Result = ({
             papersNum: papersNum,
             digitNum: digitNum,
             secondsNum: secondsNum,
+            secondsLeftFromGameFinished: secondsLeftFromGameFinished,
             isEnableMinus: isEnableMinus,
           }}
         >
