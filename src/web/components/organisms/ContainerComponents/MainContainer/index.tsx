@@ -86,7 +86,7 @@ const MainContainer = () => {
             isEnableMinus: location.state.isEnableMinus,
           },
         });
-      }, 5000);
+      }, location.state.secondsLeftFromGameFinished * 1000);
       return;
     }
 
