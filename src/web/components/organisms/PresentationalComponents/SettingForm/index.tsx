@@ -29,12 +29,13 @@ const SettingForm = ({
 }: SettingFormProps) => {
   return (
     <>
-      {errors?.digitNum || errors?.papersNum || errors?.secondsNum ? (
+      {errors?.digitNum || errors?.papersNum || errors?.secondsNum || errors?.secondsLeftFromGameFinished ? (
         <Alert kind={AlertKind.ERROR} className={styles.alert}>
           <ul>
             {errors.papersNum && <li>{errors.papersNum.message}</li>}
             {errors.digitNum && <li>{errors.digitNum.message}</li>}
             {errors.secondsNum && <li>{errors.secondsNum.message}</li>}
+            {errors.secondsLeftFromGameFinished && <li>{errors.secondsLeftFromGameFinished.message}</li>}
           </ul>
         </Alert>
       ) : (
@@ -88,6 +89,22 @@ const SettingForm = ({
           }}
           placeholder="1枚あたりの秒数を入力"
           label="1枚あたりの秒数"
+        />
+        <InputGroup
+          className={styles.inputGroup}
+          validRegister={{
+            name: "secondsLeftFromGameFinished",
+            register: register,
+            valid: {
+              required: "フラッシュ暗算が終わってから答えを表示するまでの秒数を入力してください",
+              min: {
+                value: 1,
+                message: "フラッシュ暗算が終わってから答えを表示するまでの秒数は1以上の値を入力してください",
+              },
+            },
+          }}
+          placeholder="フラッシュ暗算が終わってから答えを表示するまでの秒数"
+          label="フラッシュ暗算が終わってから答えを表示するまでの秒数"
         />
         <CheckboxGroup
           className={styles.inputGroup}

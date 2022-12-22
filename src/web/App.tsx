@@ -5,7 +5,6 @@ import "./styles/global.scss";
 
 export const App = () => {
   const closeApplication = async () => {
-    console.log(window);
     await window.api.closeApplication();
   };
 
