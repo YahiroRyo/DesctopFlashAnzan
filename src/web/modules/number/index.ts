@@ -2,19 +2,30 @@ export const generateRandomNum = (digitNum: number): number => {
   let result = "";
 
   for (let i = 0; i < digitNum; i++) {
-    result += String(Math.floor(Math.random() * 10));
+    const randomNum = String(Math.floor(Math.random() * 10));
+    if (randomNum === "0") {
+      --i;
+      continue;
+    }
+    result += randomNum;
   }
 
   return generateRandomBoolean() ? -parseInt(result) : parseInt(result);
 };
 
 export const generateRandomPositiveNum = (digitNum: number): number => {
-  const randomNum = generateRandomNum(digitNum);
-  if (randomNum < 0) {
-    return generateRandomPositiveNum(digitNum);
+  let result = "";
+
+  for (let i = 0; i < digitNum; i++) {
+    const randomNum = String(Math.floor(Math.random() * 10));
+    if (randomNum === "0") {
+      --i;
+      continue;
+    }
+    result += randomNum;
   }
 
-  return randomNum;
+  return parseInt(result);
 };
 
 export const generateRandomBoolean = (): boolean => {

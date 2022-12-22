@@ -26,16 +26,12 @@ const MainContainer = () => {
     return displayedNumber === num;
   };
 
-  const isZero = (num: number): boolean => {
-    return num === 0;
-  };
-
   const isAnswerNegativeNumber = (num: number): boolean => {
     return answer + num < 0;
   };
 
   const isUnDisplayedMinus = (num: number): boolean => {
-    if (isDisplayedMinus) {
+    if (!state.isEnableMinus || isDisplayedMinus) {
       return false;
     }
 
@@ -50,7 +46,6 @@ const MainContainer = () => {
   const isIllegalNumber = (randomNum: number): boolean => {
     return (
       isSameDigitNum(randomNum) ||
-      isZero(randomNum) ||
       isAnswerNegativeNumber(randomNum) ||
       isUnDisplayedMinus(randomNum)
     );
