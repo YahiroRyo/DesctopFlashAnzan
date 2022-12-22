@@ -87,6 +87,7 @@ const MainContainer = () => {
             papersNum: location.state.papersNum,
             digitNum: location.state.digitNum,
             secondsNum: location.state.secondsNum,
+            secondsLeftFromGameFinished: location.state.secondsLeftFromGameFinished,
             isEnableMinus: location.state.isEnableMinus,
           },
         });
